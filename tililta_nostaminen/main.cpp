@@ -51,8 +51,8 @@ int main()
 	Tili tili;
 	tili.set_saldo(26798);
 
-	std::thread th1(talleta_tilille, std::ref(tili), tapahtumia * talletus); // 1500 * 10 = 30 000
-	std::thread th2(nosta_tililta, std::ref(tili), tapahtumia * nosto); // 1500 * 50 = 60 000
+	std::thread th1(talleta_tilille, std::ref(tili), tapahtumia * talletus); // 1500 * 20 = 30 000
+	std::thread th2(nosta_tililta, std::ref(tili), tapahtumia * nosto); // 1500 * 40 = 60 000
 
 	th1.join();
 	th2.join();
