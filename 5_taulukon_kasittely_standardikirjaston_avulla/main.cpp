@@ -38,11 +38,11 @@ int main()
 
 	/*Suorituskykyerot eri suoritusmääreiden välillä: 
 	o std::execution::seq -> sequenital execution. Default, jos ei spesifioida execution policy a. "algorithm will be executed in the calling thread without any parallelization. It's useful when you want to ensure that the algorithm runs in a single-threaded, sequential manner."
-		0.0003252 s
+		Suoritusaika : 0.0003252 s
 	o std::execution::par -> paraller exe. "This execution policy specifies that the algorithm can execute in parallel if the standard library implementation supports parallel execution. It allows the implementation to use multiple threads to execute the algorithm concurrently, potentially speeding up the execution on multi-core processors."
-		0.0013197 s
+		Suoritusaika : 0.0013197 s
 	o std::execution::par_unseq -> sama ku edelline, mut vaatii stronger guarantees, but allows additional optimizationsl, "allows the standard library to use SIMD (Single Instruction, Multiple Data) instructions to process multiple elements simultaneously when executing the algorithm in parallel"
-		0.0015474 s
+		Suoritusaika : 0.0015474 s
 	*/
 	
 

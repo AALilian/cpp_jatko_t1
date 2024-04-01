@@ -25,11 +25,14 @@ int main()
 {
 	int sum = 0;
 	int total_elements = 12000;
-	int threads = 5;
+
+	unsigned int threads = std::thread::hardware_concurrency();
+	std::cout << threads << " concurrent threads are supported.\n";
 
 	std::vector<int> large_vector(total_elements, 2); //kaikki arvot on 2
 
-	int chunk = total_elements / threads; // 12000 / 5 = 2400 
+	int chunk = total_elements / threads;
+	std::cout << chunk << " chunk.\n";
 	std::vector<std::future<int>> futures(threads);
 
 	for (int i = 0; i < threads; ++i)
