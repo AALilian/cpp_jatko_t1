@@ -27,7 +27,7 @@ int main()
 	int total_elements = 12000;
 	int threads = 5;
 
-	std::vector<int> large_array(total_elements, 2); //kaikki arvot on 2
+	std::vector<int> large_vector(total_elements, 2); //kaikki arvot on 2
 
 	int chunk = total_elements / threads; // 12000 / 5 = 2400 
 	std::vector<std::future<int>> futures(threads);
@@ -36,7 +36,7 @@ int main()
 	{
 		int start = i * chunk;
 		int end = (i == threads - 1) ? total_elements : (i + 1) * chunk;
-		futures[i] = std::async(std::launch::async, count_elements, std::ref(large_array), start, end);
+		futures[i] = std::async(std::launch::async, count_elements, std::ref(large_vector), start, end);
 	}
 
 	int total = 0;

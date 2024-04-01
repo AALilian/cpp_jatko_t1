@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "rinnakkaista_pelin_laskenta
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "4_summa_asynkronisilla_funktiokutsuilla", "4_summa_asynkronisilla_funktiokutsuilla\4_summa_asynkronisilla_funktiokutsuilla.vcxproj", "{30F02EEF-F9E3-4E0F-9264-448EB1314E90}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5_taulukon_kasittely_standardikirjaston_avulla", "5_taulukon_kasittely_standardikirjaston_avulla\5_taulukon_kasittely_standardikirjaston_avulla.vcxproj", "{9A5F83FA-FEEA-45B2-8F04-3F053954881C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{30F02EEF-F9E3-4E0F-9264-448EB1314E90}.Release|x64.Build.0 = Release|x64
 		{30F02EEF-F9E3-4E0F-9264-448EB1314E90}.Release|x86.ActiveCfg = Release|Win32
 		{30F02EEF-F9E3-4E0F-9264-448EB1314E90}.Release|x86.Build.0 = Release|Win32
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Debug|x64.ActiveCfg = Debug|x64
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Debug|x64.Build.0 = Debug|x64
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Debug|x86.ActiveCfg = Debug|Win32
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Debug|x86.Build.0 = Debug|Win32
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Release|x64.ActiveCfg = Release|x64
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Release|x64.Build.0 = Release|x64
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Release|x86.ActiveCfg = Release|Win32
+		{9A5F83FA-FEEA-45B2-8F04-3F053954881C}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
