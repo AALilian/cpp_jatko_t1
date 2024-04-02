@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "5_taulukon_kasittely_standa
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "6_pelin_laskentaa_asynkronisilla_funktiokutsuilla", "6_pelin_laskentaa_asynkronisilla_funktiokutsuilla\6_pelin_laskentaa_asynkronisilla_funktiokutsuilla.vcxproj", "{3B8D4363-00A1-498B-9BF4-6776CC44FC06}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_miniprojekti", "1_miniprojekti\1_miniprojekti.vcxproj", "{75C85551-267F-40D2-834E-9C514F7EB097}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
