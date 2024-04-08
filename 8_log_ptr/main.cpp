@@ -1,19 +1,32 @@
 #include <iostream>
 #include <memory>
 #include <chrono>
-#include <ctime>
+
+void GetTimeStamp() {
+	std::time_t now = std::chrono::system_clock::to_time_t(std::chrono::system_clock::now());
+	std::cout << std::put_time(std::localtime(&now), "%F %T");
+}
 
 class SimpleClass {
+	int id;
 public:
-	SimpleClass() {
+	SimpleClass() : id(0) {
+		std::cout << "jo\n";
+	}
+	SimpleClass(int id) : id(id) {
 		std::cout << "jo\n";
 	}
 	~SimpleClass() {
 		std::cout << "tain\n";
 	}
 
+	void SayHello() {
+		std::cout << "h e l l o, my id is: " << id << "\n";
+	}
+
 	std::shared_ptr<SimpleClass> ReturnSharedPtr(std::shared_ptr<SimpleClass> shared) {
-		std::cout << "joku funktio kutsuttu ja shared ptr palautetaan";
+		GetTimeStamp();
+		std::cout << " joku funktio kutsuttu ja shared ptr palautetaan\n";
 		return shared;
 	}
 };
@@ -21,85 +34,104 @@ public:
 template <class T>
 class Log_Ptr {
 	T* ptr; 
-	std::chrono::time_point<std::chrono::system_clock> timestamp;
-	std::time_t end_t;
-	int ref_count;
+	int* ref_count;
+
+	void AddRef() {
+		(*ref_count)++;
+		GetTimeStamp();
+		std::cout <<  " reference count nousi: " << *ref_count << "\n";
+	}
+
+	void Release() {
+		if (*ref_count > 0) {
+			(*ref_count)--;
+			GetTimeStamp();
+			std::cout <<  " reference count laski: " << *ref_count << "\n";
+		}
+	}
 
 public: 
-	Log_Ptr(T* ptrValue) : ptr(ptrValue), timestamp(std::chrono::system_clock::now()), end_t(std::chrono::system_clock::to_time_t(timestamp)), ref_count(0) {
-		std::cout << std::ctime(&end_t) << " omistajuus siirretty " << &ptr << "\n";
+	Log_Ptr(T* ptrValue) : ptr(ptrValue), ref_count(new int(0)) {
+		GetTimeStamp();
+		std::cout << " omistajuus siirretty " << &ptr << "\n";
 		AddRef();
 	}
+
+	Log_Ptr(const Log_Ptr<T>& copy) : ptr(copy.ptr), ref_count(copy.ref_count) {
+		GetTimeStamp();
+		std::cout << " olio kopioitu " << &ptr << "\n";
+		AddRef();
+	}	
 
 	~Log_Ptr() {
 		Release();		
 
-		if (ref_count == 0) {
-			timestamp = std::chrono::system_clock::now();
-			end_t = std::chrono::system_clock::to_time_t(timestamp);
-			std::cout << std::ctime(&end_t) << " olio tuhottu " << &ptr << "\n";
+		if (*ref_count == 0) {
+			GetTimeStamp(); 
+			std::cout << " olio tuhottu " << &ptr << "\n";
 			delete ptr;
+			delete ref_count;
 		}		
-	}	
+	}		
 
-	void AddRef() {
-		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);		
-		ref_count++;
-		std::cout << std::ctime(&end_t) << " reference count nousi: " << ref_count << "\n";
-	}
+	//// Delete the copy constructor
+	//Log_Ptr<T>(const Log_Ptr<T>&) = delete;
 
-	void Release() {
-		if (ref_count > 0) {
-			timestamp = std::chrono::system_clock::now();
-			end_t = std::chrono::system_clock::to_time_t(timestamp);
-			ref_count--;
-			std::cout << std::ctime(&end_t) << " reference count laski: " << ref_count << "\n";
-		}		
-	}
-
-	// Delete the copy constructor
-	Log_Ptr(const Log_Ptr&) = delete;
-
-	// Delete the copy assignment operator
-	Log_Ptr& operator=(const Log_Ptr&) = delete;
+	//// Delete the copy assignment operator
+	//Log_Ptr<T>& operator=(const Log_Ptr<T>&) = delete;
 
 	// dereference operator
 	T& operator* () {		
-		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);
-		std::cout << std::ctime(&end_t) << " operator-> " << &ptr << "\n";
+		GetTimeStamp();
+		std::cout << " operator* " << &ptr << "\n";
 		return *ptr;
 	}
 
 	T* operator-> () {
-		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);
-		std::cout << std::ctime(&end_t) << " operator* " << &ptr << "\n";
+		GetTimeStamp();
+		std::cout << " operator-> " << &ptr << "\n";
 		return ptr;
+	}
+
+	Log_Ptr<T>& operator=(const Log_Ptr<T>& copy) {
+		if (this != &copy) {
+			if (*ref_count == 0) {
+				delete ptr;
+				delete ref_count;
+			}
+
+			GetTimeStamp();
+			std::cout << " operator= " << &ptr << "\n";
+
+			ptr = copy.ptr;
+			ref_count = copy.ref_count;
+			AddRef();
+		}
+		return *this;
 	}
 };
 
-
 int main() {
-	
-	/*std::shared_ptr<Class> o1 = std::make_shared<Class>();
-	std::shared_ptr<Class> o2 = return_shared_ptr(o1);
-	
-	std::shared_ptr<Class> o3 = o2; 
-	*/
-
 
 	Log_Ptr<SimpleClass> l1(new SimpleClass);
 
 	std::shared_ptr<SimpleClass> s1 = std::make_shared<SimpleClass>();
 	std::shared_ptr<SimpleClass> s2 = l1->ReturnSharedPtr(s1);
 
-	Log_Ptr<SimpleClass> p2(new SimpleClass);
-	Log_Ptr<SimpleClass> p3(new SimpleClass);
-	Log_Ptr<SimpleClass> p4(new SimpleClass);
+	SimpleClass* s3 = l1.operator->();
 
+	Log_Ptr<SimpleClass> l2(new SimpleClass(3));
+	l2->SayHello();
 
+	{
+		Log_Ptr<SimpleClass> l3 = l2;
+		l3->SayHello();
+
+		Log_Ptr<SimpleClass> l4 = l2;	
+		l4->SayHello();
+	}
+
+	l2->SayHello();
 
 	std::cout << "loppu\n";
 
