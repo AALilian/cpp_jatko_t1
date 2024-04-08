@@ -6,58 +6,63 @@
 class SimpleClass {
 public:
 	SimpleClass() {
-		std::cout << "jo";
+		std::cout << "jo\n";
 	}
 	~SimpleClass() {
-		std::cout << "tain";
+		std::cout << "tain\n";
+	}
+
+	std::shared_ptr<SimpleClass> ReturnSharedPtr(std::shared_ptr<SimpleClass> shared) {
+		std::cout << "joku funktio kutsuttu ja shared ptr palautetaan";
+		return shared;
 	}
 };
 
 template <class T>
 class Log_Ptr {
 	T* ptr; 
-	const std::chrono::time_point<std::chrono::system_clock> timestamp;
+	std::chrono::time_point<std::chrono::system_clock> timestamp;
 	std::time_t end_t;
-
 	int ref_count;
 
-
 public: 
-	Log_Ptr(T* ptrValue) : ptr(ptrValue), timestamp(std::chrono::system_clock::now()), end_t(std::chrono::system_clock::to_time_t(timestamp)) {
+	Log_Ptr(T* ptrValue) : ptr(ptrValue), timestamp(std::chrono::system_clock::now()), end_t(std::chrono::system_clock::to_time_t(timestamp)), ref_count(0) {
 		std::cout << std::ctime(&end_t) << " omistajuus siirretty " << &ptr << "\n";
 		AddRef();
 	}
 
 	~Log_Ptr() {
-		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);
-		
+		Release();		
 
 		if (ref_count == 0) {
+			timestamp = std::chrono::system_clock::now();
+			end_t = std::chrono::system_clock::to_time_t(timestamp);
 			std::cout << std::ctime(&end_t) << " olio tuhottu " << &ptr << "\n";
 			delete ptr;
-		}
+		}		
 	}	
 
 	void AddRef() {
 		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);
-		std::cout << std::ctime(&end_t) << " reference count nousee yhdellä.\n";
+		end_t = std::chrono::system_clock::to_time_t(timestamp);		
 		ref_count++;
+		std::cout << std::ctime(&end_t) << " reference count nousi: " << ref_count << "\n";
 	}
 
-	int Release() {
-		timestamp = std::chrono::system_clock::now();
-		end_t = std::chrono::system_clock::to_time_t(timestamp);
-		std::cout << std::ctime(&end_t) << " reference count laskee yhdellä.\n";
-		return --ref_count;
+	void Release() {
+		if (ref_count > 0) {
+			timestamp = std::chrono::system_clock::now();
+			end_t = std::chrono::system_clock::to_time_t(timestamp);
+			ref_count--;
+			std::cout << std::ctime(&end_t) << " reference count laski: " << ref_count << "\n";
+		}		
 	}
 
-	//// Delete the copy constructor
-	//Log_Ptr(const Log_Ptr&) = delete;
+	// Delete the copy constructor
+	Log_Ptr(const Log_Ptr&) = delete;
 
-	//// Delete the copy assignment operator
-	//Log_Ptr& operator=(const Log_Ptr&) = delete;
+	// Delete the copy assignment operator
+	Log_Ptr& operator=(const Log_Ptr&) = delete;
 
 	// dereference operator
 	T& operator* () {		
@@ -76,11 +81,6 @@ public:
 };
 
 
-//std::shared_ptr<Class> return_shared_ptr(std::shared_ptr<Class> shared) {
-//	std::cout << "joku funktio kutsuttu ja shared ptr palautetaan";
-//	return shared;
-//}
-
 int main() {
 	
 	/*std::shared_ptr<Class> o1 = std::make_shared<Class>();
@@ -89,9 +89,19 @@ int main() {
 	std::shared_ptr<Class> o3 = o2; 
 	*/
 
-	Log_Ptr<SimpleClass> p1(new SimpleClass());
 
-	std::cout << "loppu";
+	Log_Ptr<SimpleClass> l1(new SimpleClass);
+
+	std::shared_ptr<SimpleClass> s1 = std::make_shared<SimpleClass>();
+	std::shared_ptr<SimpleClass> s2 = l1->ReturnSharedPtr(s1);
+
+	Log_Ptr<SimpleClass> p2(new SimpleClass);
+	Log_Ptr<SimpleClass> p3(new SimpleClass);
+	Log_Ptr<SimpleClass> p4(new SimpleClass);
+
+
+
+	std::cout << "loppu\n";
 
 	return 0;
 }
