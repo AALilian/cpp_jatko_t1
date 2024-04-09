@@ -37,7 +37,7 @@ public:
 
 
 int main() {
-	std::vector<int> HPs = { 100, 87, 5, 120 };
+	std::vector<int> HPs = { 100, 213, 87, 5, 120 };
 
 	std::cout << "HPt alussa: ";
 	auto print = [](const int& n) { std::cout << n << ' '; };
@@ -72,6 +72,11 @@ int main() {
 
 	std::cout << "\nHPt lopussa: ";
 	std::for_each(HPs.cbegin(), HPs.cend(), print);
+
+	std::cout << "\nHPt suurimmasta pieninpään: ";
+	std::sort(HPs.begin(), HPs.end(), [](int a, int b) { return a > b; });
+	std::for_each(HPs.cbegin(), HPs.cend(), print);
+	std::cout << std::endl;
 
 	return 0;
 }
