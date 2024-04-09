@@ -17,6 +17,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "1_miniprojekti", "1_minipro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "8_log_ptr", "8_log_ptr\8_log_ptr.vcxproj", "{8D5FF4C6-549D-4A5F-8D20-E789BC1E9B7B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12_lambda_funktiot", "12_lambda_funktiot\12_lambda_funktiot.vcxproj", "{9942E85E-43B1-4E3E-B0E9-620100DCFE15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
