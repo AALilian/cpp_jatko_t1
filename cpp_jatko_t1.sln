@@ -25,6 +25,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14_kopiokonstruktori_ja_sij
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_move_konstruktori_ja_move_sijoitusoperaattori", "15_move_konstruktori_ja_move_sijoitusoperaattori\15_move_konstruktori_ja_move_sijoitusoperaattori.vcxproj", "{CF6F0839-31C2-4330-BF01-C7F3039ED59B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_ja_17_poikkeukset", "16_ja_17_poikkeukset\16_ja_17_poikkeukset.vcxproj", "{0ECB69B7-039D-4132-868F-763CAC46E52B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
