@@ -19,6 +19,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "8_log_ptr", "8_log_ptr\8_lo
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "12_lambda_funktiot", "12_lambda_funktiot\12_lambda_funktiot.vcxproj", "{9942E85E-43B1-4E3E-B0E9-620100DCFE15}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "13_move_semantiikka", "13_move_semantiikka\13_move_semantiikka.vcxproj", "{47891667-0247-4168-B3BA-B2ED9DCDBBC1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "14_kopiokonstruktori_ja_sijoitusoperaattori", "14_kopiokonstruktori_ja_sijoitusoperaattori\14_kopiokonstruktori_ja_sijoitusoperaattori.vcxproj", "{7B0977AA-4FAF-4FDD-A396-542ED4B14380}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
