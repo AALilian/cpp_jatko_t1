@@ -27,6 +27,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "15_move_konstruktori_ja_mov
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "16_ja_17_poikkeukset", "16_ja_17_poikkeukset\16_ja_17_poikkeukset.vcxproj", "{0ECB69B7-039D-4132-868F-763CAC46E52B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3_minprojekti_taso1", "3_minprojekti_taso1\3_minprojekti_taso1.vcxproj", "{37C8A93D-238B-4D34-8C63-2F163F06F92D}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "3_miniprojekti_taso2", "3_miniprojekti_taso2\3_miniprojekti_taso2.vcxproj", "{6FD37B63-FD29-4BC6-B421-7E84C4ACBD19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
